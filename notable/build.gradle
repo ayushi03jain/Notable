@@ -2,7 +2,6 @@ apply plugin: 'com.android.application'
 
 android {
     compileSdkVersion 25
-    buildToolsVersion '25.0.3'
 
     defaultConfig {
         applicationId "com.icechen1.notable"
@@ -10,6 +9,11 @@ android {
         targetSdkVersion 21
     }
     buildTypes {
+        debug {
+            // Install alongside an existing release build by using a different applicationId
+            applicationIdSuffix ".debug"
+        }
+
         release {
             minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.txt'
@@ -18,5 +22,5 @@ android {
 }
 
 dependencies {
-    compile project(':notableLibrary')
+    implementation project(':notableLibrary')
 }

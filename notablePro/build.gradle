@@ -2,7 +2,6 @@ apply plugin: 'com.android.application'
 
 android {
     compileSdkVersion 25
-    buildToolsVersion '25.0.3'
 
     defaultConfig {
         applicationId "com.icechen1.notable.pro"
@@ -18,5 +17,5 @@ android {
 }
 
 dependencies {
-    compile project(':notableLibrary')
+    implementation project(':notableLibrary')
 }
