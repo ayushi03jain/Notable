@@ -408,30 +408,13 @@ public class MainActivity
 	public boolean onOptionsItemSelected(MenuItem item) {
 	    int itemId = item.getItemId();
 		if (itemId == R.id.menu_settings) {
-			// launch prefs
-            Intent gopref = new Intent(this, PreferencesActivity.class);
+			Intent gopref = new Intent(this, PreferencesActivity.class);
 			gopref.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-			//startActivity(gopref);
-			//Intent intent = getIntent();
-			//finish();
 			startActivity(gopref);
-			return true;
-		} else if (itemId == R.id.more_apps) {
-			startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://play.google.com/store/apps/developer?id=Yu+Chen+Hou")));
-			return true;
-		} else if (itemId == R.id.donate) {
-			startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://play.google.com/store/apps/details?id=com.icechen1.notable.pro")));
 			return true;
 		} else if (itemId == R.id.menu_history) {
 			Intent gohist = new Intent(this, HistoryActivity.class);
 			startActivity(gohist);
-			return true;
-		} else if (itemId == R.id.menu_share) {
-			Intent sendIntent = new Intent();
-			sendIntent.setAction(Intent.ACTION_SEND);
-			sendIntent.putExtra(Intent.EXTRA_TEXT, getString(R.string.share_message));
-			sendIntent.setType("text/plain");
-			startActivity(sendIntent);
 			return true;
 		} else {
 			return super.onOptionsItemSelected(item);

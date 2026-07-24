@@ -54,9 +54,7 @@ public class DetailActivity extends FragmentActivity {
 			//finish();
 			startActivity(gopref);
 			return true;
-		} else if (itemId == R.id.more_apps) {
-			startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://play.google.com/store/apps/developer?id=Yu+Chen+Hou")));
-			return true;
+        
 		} else if (itemId == R.id.menu_history) {
 			Intent gohist = new Intent(this, HistoryActivity.class);
 			startActivity(gohist);

@@ -10,13 +10,40 @@ android {
     }
     buildTypes {
         debug {
-            // Install alongside an existing release build by using a different applicationId
-            applicationIdSuffix ".debug"
+            // Build debug with the app's original applicationId so it can be installed as an update.
+            // NOTE: Installing as an update requires the APK to be signed with the same key
+            // as the installed app. To sign the debug build with your release keystore,
+            // set the properties in your `gradle.properties` or pass them via the command line:
+            //   releaseStoreFile, releaseStorePassword, releaseKeyAlias, releaseKeyPassword
+            // and set `useReleaseSigning=true` to enable using the release signing config.
+            // Example `gradle.properties` entries:
+            // releaseStoreFile=C:\keystores\my-release.keystore
+            // releaseStorePassword=...
+            // releaseKeyAlias=releasekey
+            // releaseKeyPassword=...
+            // useReleaseSigning=true
+            
+            // Optionally use the release signing config for debug builds when requested
+            if (project.hasProperty('useReleaseSigning') && project.property('useReleaseSigning') == 'true') {
+                signingConfig signingConfigs.release
+            }
         }
 
         release {
             minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.txt'
+        }
+    }
+}
+
+// Optional signing config that reads keystore properties from the project.
+android.signingConfigs {
+    release {
+        if (project.hasProperty('releaseStoreFile')) {
+            storeFile file(project.property('releaseStoreFile'))
+            storePassword project.property('releaseStorePassword')
+            keyAlias project.property('releaseKeyAlias')
+            keyPassword project.property('releaseKeyPassword')
         }
     }
 }
